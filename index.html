@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali AlSabeh</title>
+  <meta name="description" content="Personal GitHub Pages site" />
+  <style>
+    :root {
+      --bg: #0f172a;      /* slate-900 */
+      --card: #111827;    /* gray-900 */
+      --text: #e5e7eb;    /* gray-200 */
+      --muted: #9ca3af;   /* gray-400 */
+      --accent: #38bdf8;  /* sky-400 */
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+      background: linear-gradient(180deg, #020617, var(--bg));
+      color: var(--text);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      padding: 4rem 1rem 2rem;
+      text-align: center;
+    }
+    header h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: .5rem; }
+    header p { color: var(--muted); max-width: 42rem; margin: 0 auto; }
+    nav {
+      display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;
+    }
+    .container { max-width: 64rem; margin: 0 auto; padding: 1rem; }
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;
+    }
+    .card {
+      background: radial-gradient(1200px 400px at 0% 0%, #020617 0%, var(--card) 40%);
+      border: 1px solid #1f2937;
+      border-radius: 1rem;
+      padding: 1.25rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .card h3 { margin-top: 0; }
+    footer {
+      border-top: 1px solid #1f2937; color: var(--muted);
+      padding: 2rem 1rem; text-align: center; margin-top: 3rem;
+    }
+    .badge {
+      display: inline-block; padding: .25rem .5rem; border-radius: .5rem;
+      background: #020617; border: 1px solid #1f2937; color: var(--muted); font-size: .8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ali AlSabeh</h1>
+    <p>Bio - to be filled</p>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Project Title</h3>
+          <span class="badge">Python</span>
+          <p>One–two sentence description of the project and its impact.</p>
+          <p><a href="https://github.com/username/repo">GitHub →</a></p>
+        </article>
+        <article class="card">
+          <h3>Another Project</h3>
+          <span class="badge">Security</span>
+          <p>Brief description. Focus on outcomes or novelty.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications" style="margin-top:2rem;">
+      <h2>Publications</h2>
+      <div class="card">
+        <ul>
+          <li>Author(s). <em>Title</em>. Venue, Year.</li>
+          <li>Author(s). <em>Title</em>. Venue, Year.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="teaching" style="margin-top:2rem;">
+      <h2>Teaching</h2>
+      <div class="card">
+        <ul>
+          <li>Course Name — Term</li>
+          <li>Course Name — Term</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:2rem;">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>Email: yourname@domain.edu</p>
+        <p>GitHub: <a href="https://github.com/username">@username</a></p>
+        <p>LinkedIn / Google Scholar / CV</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Your Name · Built with GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
