@@ -3,48 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publications</title>
-  <meta name="description" content="Publications and research projects" />
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #38bdf8;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica Neue, Arial;
-      background: linear-gradient(180deg, #020617, var(--bg));
-      color: var(--text);
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    header {
-      padding: 3rem 1rem 1.5rem;
-      text-align: center;
-    }
-    header h1 { margin-bottom: .5rem; }
-    header p { color: var(--muted); max-width: 48rem; margin: 0 auto; }
-    .container { max-width: 64rem; margin: 0 auto; padding: 1rem; }
-    .publication {
-      background: radial-gradient(1200px 400px at 0% 0%, #020617 0%, var(--card) 40%);
-      border: 1px solid #1f2937;
-      border-radius: 1rem;
-      padding: 1.25rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .publication h3 { margin-top: 0; margin-bottom: .25rem; }
-    .meta { color: var(--muted); font-size: .9rem; margin-bottom: .5rem; }
-    footer {
-      border-top: 1px solid #1f2937;
-      color: var(--muted);
-      padding: 2rem 1rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-  </style>
+  <title>Students · Ali AlSabeh</title>
+  <meta name="description" content="Student mentoring and research opportunities with Ali AlSabeh" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+<body>
+  <nav class="site-nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="dot"></span> Ali AlSabeh</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="activities.html">Activities</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding-bottom: 2.5rem;">
+    <div class="container" style="flex-direction: column; align-items: flex-start; gap:.5rem;">
+      <h1 style="margin-bottom:0;">Students</h1>
+      <p class="lead">I welcome motivated students interested in network security, programmable data planes, ICS security, and AI security to reach out about research opportunities.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section style="margin-top: 1.5rem;">
+      <h2>Current Students</h2>
+      <div class="empty-state">
+        Student profiles are being added here.
+      </div>
+    </section>
+
+    <section>
+      <h2>Alumni</h2>
+      <div class="empty-state">
+        Alumni and their outcomes will be listed here.
+      </div>
+    </section>
+
+    <section>
+      <h2>Interested in Working Together?</h2>
+      <div class="card">
+        <p>If you're a student interested in research on network security, systems, or AI security, feel free to <a href="mailto:ali.alsabeh@usca.edu">email me</a> with your background and interests.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Ali AlSabeh · Students</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

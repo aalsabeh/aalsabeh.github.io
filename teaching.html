@@ -3,48 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Publications</title>
-  <meta name="description" content="Publications and research projects" />
-  <style>
-    :root {
-      --bg: #0f172a;
-      --card: #111827;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #38bdf8;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica Neue, Arial;
-      background: linear-gradient(180deg, #020617, var(--bg));
-      color: var(--text);
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    header {
-      padding: 3rem 1rem 1.5rem;
-      text-align: center;
-    }
-    header h1 { margin-bottom: .5rem; }
-    header p { color: var(--muted); max-width: 48rem; margin: 0 auto; }
-    .container { max-width: 64rem; margin: 0 auto; padding: 1rem; }
-    .publication {
-      background: radial-gradient(1200px 400px at 0% 0%, #020617 0%, var(--card) 40%);
-      border: 1px solid #1f2937;
-      border-radius: 1rem;
-      padding: 1.25rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-    .publication h3 { margin-top: 0; margin-bottom: .25rem; }
-    .meta { color: var(--muted); font-size: .9rem; margin-bottom: .5rem; }
-    footer {
-      border-top: 1px solid #1f2937;
-      color: var(--muted);
-      padding: 2rem 1rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-  </style>
+  <title>Teaching · Ali AlSabeh</title>
+  <meta name="description" content="Teaching and instructional materials by Ali AlSabeh" />
+  <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+<body>
+  <nav class="site-nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="dot"></span> Ali AlSabeh</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="teaching.html" class="active">Teaching</a>
+        <a href="activities.html">Activities</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding-bottom: 2.5rem;">
+    <div class="container" style="flex-direction: column; align-items: flex-start; gap:.5rem;">
+      <h1 style="margin-bottom:0;">Teaching</h1>
+      <p class="lead">Courses and hands-on instructional materials in networking and cybersecurity, used by thousands of learners across the globe.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section style="margin-top: 1.5rem;">
+      <h2>Areas I Teach</h2>
+      <p class="section-sub">Hands-on materials covering the following topics, from fundamentals to applied practice.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Routing &amp; Switching</h3>
+          <p>Border Gateway Protocol (BGP) and Open Shortest Path First (OSPF).</p>
+        </article>
+        <article class="card">
+          <h3>Software-Defined Networking</h3>
+          <p>SDN concepts and programmable data planes, including P4.</p>
+        </article>
+        <article class="card">
+          <h3>Applied Cybersecurity</h3>
+          <p>Practical, hands-on security labs and exercises for real-world skills.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Course Listings</h2>
+      <p class="section-sub">Graduate and undergraduate courses taught at USCA.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>CSCI 617 — Advanced Information and Network Security</h3>
+          <p>Advanced graduate-level topics in network security protocols and implementations (IP/DNS/Email security, cloud security, intrusion detection and prevention systems, etc.).</p>
+        </article>
+        <article class="card">
+          <h3>CSCI 620 — Introduction to AI and Machine Learning</h3>
+          <p>Preparation in core AI and machine learning concepts with applications to intrusion detection, malware analysis, and security analytics (theory and hands-on labs).</p>
+        </article>
+        <article class="card">
+          <h3>CSCI 591 I &amp; II — Capstone Seminar for Cybersecurity Students</h3>
+          <p>Team-based, in-depth study of a selected cybersecurity topic with faculty supervision and sustained theoretical and implementation guidance across two semesters, culminating in a complete and technically sound project.</p>
+        </article>
+        <article class="card">
+          <h3>CSCI 515 — Ethical Hacking</h3>
+          <p>Preparation for the Certified Ethical Hacker (CEH) certification (theory and hands-on labs).</p>
+        </article>
+        <article class="card">
+          <h3>CSCI 616 — Advanced Computer Networks</h3>
+          <p>Advanced graduate-level topics in networking (congestion control, Quality of Service, SDN, etc.).</p>
+        </article>
+        <article class="card">
+          <h3>CSCI 425 — Network Security</h3>
+          <p>Core principles of network security, including intrusion detection, prevention, firewalls, secure protocols, traffic analysis, and risk management.</p>
+        </article>
+        <article class="card">
+          <h3>CSCI 215 — Information Security</h3>
+          <p>Preparation for the CompTIA Security+ certification.</p>
+        </article>
+        <article class="card">
+          <h3>CMPS 200 — Introduction to Programming</h3>
+          <p>Fundamentals of computer programming and problem solving (C, Java, Python).</p>
+        </article>
+        <article class="card">
+          <h3>CMPS 212 — Intermediate Programming with Data Structures</h3>
+          <p>Intermediate and advanced programming concepts (data structures, complexity analysis, program verification).</p>
+        </article>
+        <article class="card">
+          <h3>CMPS 209 — Computers and Programming for the Sciences</h3>
+          <p>Essential computer skills needed by students in science and business majors.</p>
+        </article>
+        <article class="card">
+          <h3>ITEC 445 — Advanced Computer Networks</h3>
+          <p>Advanced administration of client/server networks and preparation for CCNA certification.</p>
+        </article>
+        <article class="card">
+          <h3>ITEC 591 — Data Science</h3>
+          <p>Introduction to the data science lifecycle, covering data collection, cleaning, exploratory analysis, visualization, and applied statistical and machine learning methods for extracting insights from real-world datasets.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Ali AlSabeh · Teaching</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
