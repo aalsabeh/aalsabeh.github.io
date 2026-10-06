@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyPace · Ali AlSabeh</title>
+  <meta name="description" content="CyPace (Cyber Pacers Elite) — USC Aiken cyber defense team registration" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body.cy {
+      --cy-bg: #050b14;
+      --cy-panel: #0a1624;
+      --cy-panel-2: #0d1d30;
+      --cy-line: rgba(34, 211, 238, .22);
+      --cy-cyan: #22d3ee;
+      --cy-blue: #3b82f6;
+      --cy-text: #d7e7f5;
+      --cy-muted: #8aa2b8;
+      background: var(--cy-bg);
+      color: var(--cy-text);
+    }
+    body.cy a { color: var(--cy-cyan); }
+
+    /* Nav on dark */
+    body.cy .site-nav { background: rgba(5, 11, 20, .82); border-bottom-color: var(--cy-line); }
+    body.cy .brand { color: var(--cy-text); }
+    body.cy .nav-links a { color: var(--cy-muted); }
+    body.cy .nav-links a:hover, body.cy .nav-links a.active { color: var(--cy-cyan); border-color: var(--cy-cyan); }
+
+    /* Hero */
+    .cy-hero { position: relative; overflow: hidden; padding: 3.5rem 1rem 3rem; }
+    .cy-hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .cy-hero .container { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .cy-banner-wrap { perspective: 900px; width: 100%; max-width: 960px; }
+    .cy-banner {
+      width: 100%; aspect-ratio: 960 / 360; border-radius: 1rem;
+      border: 1px solid var(--cy-line);
+      box-shadow: 0 0 0 1px rgba(34,211,238,.08), 0 20px 60px rgba(34,211,238,.18);
+      transition: transform .2s ease-out, box-shadow .3s;
+      will-change: transform;
+    }
+    .cy-banner:hover { box-shadow: 0 0 0 1px rgba(34,211,238,.3), 0 24px 70px rgba(34,211,238,.32); }
+    .cy-term {
+      margin-top: 1.6rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: clamp(.9rem, 2.4vw, 1.1rem); color: var(--cy-cyan); min-height: 1.6em;
+    }
+    .cy-term .prompt { color: var(--cy-muted); }
+    .cy-term .caret { display: inline-block; width: .6em; background: var(--cy-cyan); animation: cy-blink 1s steps(1) infinite; }
+    @keyframes cy-blink { 50% { opacity: 0; } }
+    .cy-hero .lead { color: var(--cy-muted); max-width: 40rem; margin: .8rem auto 1.4rem; }
+    .cy-cta {
+      display: inline-flex; padding: .7rem 1.4rem; border-radius: 999px; font-weight: 700;
+      color: #04121c !important; background: linear-gradient(135deg, var(--cy-cyan), var(--cy-blue));
+      box-shadow: 0 0 24px rgba(34,211,238,.35); transition: transform .15s, box-shadow .15s;
+    }
+    .cy-cta:hover { text-decoration: none; transform: translateY(-2px); box-shadow: 0 0 36px rgba(34,211,238,.55); }
+
+    /* Steps */
+    body.cy section > h2 { color: var(--cy-text); }
+    .cy-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+    .cy-step {
+      background: var(--cy-panel); border: 1px solid var(--cy-line); border-radius: 1rem; padding: 1.3rem;
+      transition: transform .18s, border-color .18s, box-shadow .18s;
+    }
+    .cy-step:hover { transform: translateY(-4px); border-color: rgba(34,211,238,.55); box-shadow: 0 12px 30px rgba(34,211,238,.12); }
+    .cy-step .num { font-family: ui-monospace, Consolas, monospace; color: var(--cy-cyan); font-weight: 700; }
+    .cy-step h3 { margin: .3rem 0 .4rem; }
+    .cy-step p { margin: 0; color: var(--cy-muted); }
+
+    /* Terminal-window form */
+    .cy-window {
+      max-width: 640px; margin: 0 auto; background: var(--cy-panel);
+      border: 1px solid var(--cy-line); border-radius: 1rem; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    .cy-window-bar {
+      display: flex; align-items: center; gap: .45rem; padding: .7rem 1rem;
+      background: var(--cy-panel-2); border-bottom: 1px solid var(--cy-line);
+      font-family: ui-monospace, Consolas, monospace; font-size: .85rem; color: var(--cy-muted);
+    }
+    .cy-window-bar i { width: .7rem; height: .7rem; border-radius: 50%; display: inline-block; }
+    .cy-window-bar i:nth-child(1) { background: #f87171; }
+    .cy-window-bar i:nth-child(2) { background: #fbbf24; }
+    .cy-window-bar i:nth-child(3) { background: #34d399; margin-right: .5rem; }
+    .cy-window-body { padding: 1.2rem 1.4rem 1.6rem; }
+
+    .cyb-form { max-width: none; }
+    .cyb-form label { display: block; font-weight: 600; margin: 14px 0 6px; color: var(--cy-text); }
+    .cyb-form input[type=text], .cyb-form input[type=email], .cyb-form textarea, .cyb-form input[type=file] {
+      width: 100%; padding: 10px 12px; border: 1px solid var(--cy-line); border-radius: 8px; font: inherit;
+      background: var(--cy-bg); color: var(--cy-text); transition: border-color .15s, box-shadow .15s;
+    }
+    .cyb-form input::placeholder, .cyb-form textarea::placeholder { color: #4f657a; }
+    .cyb-form input:focus, .cyb-form textarea:focus {
+      outline: none; border-color: var(--cy-cyan); box-shadow: 0 0 0 3px rgba(34,211,238,.18);
+    }
+    .cyb-form input[type=file]::file-selector-button {
+      margin-right: .8rem; padding: .4rem .9rem; border: 1px solid var(--cy-line); border-radius: 6px;
+      background: var(--cy-panel-2); color: var(--cy-cyan); font: inherit; cursor: pointer;
+    }
+    .cyb-form textarea { min-height: 120px; resize: vertical; }
+    .cyb-form .cyb-row { display: flex; gap: 12px; }
+    .cyb-form .cyb-row > div { flex: 1; }
+    .cyb-form .cyb-hint { font-size: .85em; color: var(--cy-muted); margin-top: 4px; }
+    .cyb-form .cyb-consent { display: flex; gap: 8px; align-items: flex-start; margin-top: 18px; font-weight: 400; color: var(--cy-muted); }
+    .cyb-form .cyb-consent input { accent-color: var(--cy-cyan); margin-top: .35rem; }
+    .cyb-form .cyb-hp { position: absolute; left: -9999px; }
+    .cyb-form button {
+      margin-top: 20px; width: 100%; padding: 12px 22px; border: 0; border-radius: 8px; cursor: pointer;
+      background: linear-gradient(135deg, var(--cy-cyan), var(--cy-blue)); color: #04121c;
+      font: inherit; font-weight: 700; letter-spacing: .03em;
+      box-shadow: 0 0 20px rgba(34,211,238,.3); transition: box-shadow .15s, transform .15s;
+    }
+    .cyb-form button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 0 32px rgba(34,211,238,.5); }
+    .cyb-form button:disabled { opacity: .6; cursor: wait; }
+    .cyb-form .cyb-msg { margin-top: 14px; font-weight: 600; font-family: ui-monospace, Consolas, monospace; }
+    .cyb-form .cyb-msg.err { color: #f87171; }
+    .cyb-form .cyb-msg.ok { color: #34d399; }
+
+    body.cy footer { border-top-color: var(--cy-line); color: var(--cy-muted); }
+
+    @media (max-width: 520px) { .cyb-form .cyb-row { flex-direction: column; gap: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .cy-term .caret { animation: none; }
+      .cy-banner, .cy-step, .cy-cta { transition: none; }
+    }
+  </style>
+</head>
+<body class="cy">
+  <nav class="site-nav">
+    <div class="container">
+      <a class="brand" href="index.html"><span class="dot"></span> Ali AlSabeh</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="activities.html">Activities</a>
+        <a href="cypace.html" class="active">CyPace</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="cy-hero" id="cyHero">
+    <canvas id="cyNet" aria-hidden="true"></canvas>
+    <div class="container">
+      <div class="cy-banner-wrap">
+        <img class="cy-banner" id="cyBanner" src="assets/img/cypace-banner.gif" alt="CyPace — Cyber Pacers Elite, USC Aiken" />
+      </div>
+      <div class="cy-term"><span class="prompt">cypace@usca:~$ </span><span id="cyTyped"></span><span class="caret">&nbsp;</span></div>
+      <p class="lead">The USC Aiken cyber defense team. Register below to be considered for team selection and competition registration.</p>
+      <a class="cy-cta" href="#register">Register now</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>How it works</h2>
+      <div class="cy-steps">
+        <div class="cy-step">
+          <div class="num">01</div>
+          <h3>Register</h3>
+          <p>Fill out the form with your @usca.edu email and attach your CV as a PDF.</p>
+        </div>
+        <div class="cy-step">
+          <div class="num">02</div>
+          <h3>Confirm</h3>
+          <p>Click the confirmation link sent to your USCA inbox.</p>
+        </div>
+        <div class="cy-step">
+          <div class="num">03</div>
+          <h3>Selection</h3>
+          <p>The faculty advisor reviews registrations for team selection and competition entry.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="register">
+      <h2 style="text-align:center;">Join the team</h2>
+      <div class="cy-window">
+        <div class="cy-window-bar"><i></i><i></i><i></i>./register --team=cypace</div>
+        <div class="cy-window-body">
+          <form class="cyb-form" id="cybForm" novalidate>
+            <div class="cyb-row">
+              <div>
+                <label for="cybFirst">First name</label>
+                <input type="text" id="cybFirst" maxlength="60" required>
+              </div>
+              <div>
+                <label for="cybLast">Last name</label>
+                <input type="text" id="cybLast" maxlength="60" required>
+              </div>
+            </div>
+
+            <label for="cybEmail">USCA email</label>
+            <input type="email" id="cybEmail" placeholder="you@usca.edu" maxlength="100" required>
+            <div class="cyb-hint">Must be your @usca.edu address. You will receive a confirmation link there.</div>
+
+            <label for="cybExp">Brief experience in cybersecurity (optional)</label>
+            <textarea id="cybExp" maxlength="2000" placeholder="Courses, CTFs, certifications, home labs, clubs..."></textarea>
+
+            <label for="cybCv">CV (PDF, max 5 MB)</label>
+            <input type="file" id="cybCv" accept="application/pdf,.pdf" required>
+
+            <!-- Honeypot: hidden from humans, bots fill it -->
+            <div class="cyb-hp" aria-hidden="true">
+              <label for="cybWebsite">Website</label>
+              <input type="text" id="cybWebsite" tabindex="-1" autocomplete="off">
+            </div>
+
+            <label class="cyb-consent">
+              <input type="checkbox" id="cybConsent" required>
+              <span>I agree that my information and CV will be stored by the USCA cyber defense team faculty advisor for team selection and competition registration.</span>
+            </label>
+
+            <button type="submit" id="cybBtn">Register</button>
+            <div class="cyb-msg" id="cybMsg" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© <span id="year"></span> Ali AlSabeh · CyPace</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="email.js"></script>
+
+  <!-- Hero effects: particle network, banner tilt, typing prompt -->
+  <script>
+  (function () {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hero = document.getElementById('cyHero');
+    const banner = document.getElementById('cyBanner');
+
+    // Typing prompt
+    const typed = document.getElementById('cyTyped');
+    const cmd = './join --team="Cyber Pacers Elite"';
+    if (reduced) { typed.textContent = cmd; }
+    else {
+      let i = 0;
+      (function type() {
+        typed.textContent = cmd.slice(0, ++i);
+        if (i < cmd.length) setTimeout(type, 55 + Math.random() * 60);
+      })();
+    }
+
+    // Banner tilt follows the mouse
+    if (!reduced) {
+      hero.addEventListener('mousemove', function (e) {
+        const r = banner.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        banner.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+      });
+      hero.addEventListener('mouseleave', function () { banner.style.transform = ''; });
+    }
+
+    // Particle network that links to the cursor
+    const canvas = document.getElementById('cyNet');
+    const ctx = canvas.getContext('2d');
+    const mouse = { x: -1e4, y: -1e4 };
+    let nodes = [], w = 0, h = 0, running = true;
+
+    function resize() {
+      const dpr = window.devicePixelRatio || 1;
+      w = hero.clientWidth; h = hero.clientHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.min(80, Math.floor(w * h / 14000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      const all = nodes.concat([mouse]);
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        if (!reduced) {
+          a.x += a.vx; a.y += a.vy;
+          if (a.x < 0 || a.x > w) a.vx *= -1;
+          if (a.y < 0 || a.y > h) a.vy *= -1;
+        }
+        for (let j = i + 1; j < all.length; j++) {
+          const b = all[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+          const max = b === mouse ? 170 : 120;
+          if (d < max) {
+            ctx.strokeStyle = 'rgba(34,211,238,' + (1 - d / max) * (b === mouse ? 0.6 : 0.25) + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+        ctx.fillStyle = 'rgba(34,211,238,.8)';
+        ctx.beginPath(); ctx.arc(a.x, a.y, 1.6, 0, Math.PI * 2); ctx.fill();
+      }
+      if (running && !reduced) requestAnimationFrame(draw);
+    }
+
+    hero.addEventListener('mousemove', function (e) {
+      const r = hero.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+      if (reduced) draw();
+    });
+    hero.addEventListener('mouseleave', function () { mouse.x = mouse.y = -1e4; if (reduced) draw(); });
+
+    // Pause the animation while the hero is scrolled out of view
+    new IntersectionObserver(function (entries) {
+      const visible = entries[0].isIntersecting;
+      if (visible && !running) { running = true; draw(); }
+      running = visible;
+    }).observe(hero);
+
+    window.addEventListener('resize', function () { resize(); if (reduced) draw(); });
+    resize(); draw();
+  })();
+  </script>
+
+  <!-- Registration form -->
+  <script>
+  (function () {
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby15a67DerBdL2bRD_cq8mcIFdH6jqG7McCE9Hl3_m2jgb6fa00-0b-jWJ74c975WDr/exec';
+    const MAX_BYTES = 5 * 1024 * 1024;
+
+    const $ = id => document.getElementById(id);
+    const form = $('cybForm'), btn = $('cybBtn'), msg = $('cybMsg');
+
+    function show(text, ok) { msg.textContent = text; msg.className = 'cyb-msg ' + (ok ? 'ok' : 'err'); }
+
+    function readBase64(file) {
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(String(r.result).split(',')[1]);
+        r.onerror = reject;
+        r.readAsDataURL(file);
+      });
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const first = $('cybFirst').value.trim();
+      const last = $('cybLast').value.trim();
+      const email = $('cybEmail').value.trim().toLowerCase();
+      const file = $('cybCv').files[0];
+
+      if (!first || !last) return show('Please enter your first and last name.');
+      if (!/^[a-z0-9._%+-]+@usca\.edu$/.test(email)) return show('Please use your @usca.edu email address.');
+      if (!file) return show('Please attach your CV.');
+      if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) return show('CV must be a PDF file.');
+      if (file.size > MAX_BYTES) return show('CV must be 5 MB or smaller.');
+      if (!$('cybConsent').checked) return show('Please accept the consent statement.');
+
+      btn.disabled = true;
+      show('Submitting...', true);
+
+      try {
+        const payload = {
+          firstName: first,
+          lastName: last,
+          email: email,
+          experience: $('cybExp').value.trim(),
+          cvBase64: await readBase64(file),
+          consent: true,
+          website: $('cybWebsite').value
+        };
+        // text/plain body avoids a CORS preflight, which Apps Script does not support
+        const res = await fetch(SCRIPT_URL, { method: 'POST', body: JSON.stringify(payload) });
+        const out = await res.json();
+        show(out.message, out.ok);
+        if (out.ok) form.reset();
+      } catch (err) {
+        show('Could not submit. Please check your connection and try again.');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
